@@ -7,6 +7,7 @@ import { fetchAllProduct } from '../services/FetchProducts'
 import axios from 'axios'
 import NewWinterCollection from '../components/NewWinterCollection'
 import DealOfTheDay from '../components/DealOfTheDay'
+import Hero from '../components/Hero'
 
 
 
@@ -33,7 +34,7 @@ export default function Home({ products }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='bg-gray-50'>
-
+        <Hero />
         <NewWinterCollection products={products} />
         <DealOfTheDay />
 

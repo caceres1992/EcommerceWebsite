@@ -1,7 +1,12 @@
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { CiUser } from 'react-icons/ci'
 import { IoBagOutline } from 'react-icons/io5'
 const Navbar = () => {
+
+    const router = useRouter()
+
     return (
         <div className='bg-white py-5'>
             <div className='mx-auto max-w-7xl flex justify-between items-center'>
@@ -9,11 +14,16 @@ const Navbar = () => {
 
                 <div>
                     <ul className='flex items-center gap-5 text-gray-600'>
-                        <li className='  border-sky-600 border-b-2'>Home</li>
-                        <li>Products</li>
+                        <li className={`${router.pathname === "/" && " border-sky-600 border-b-2"}`}>
+                            <Link href={"/"}>
+                                Home
+                            </Link>
+                        </li>
+                        <li className={`${router.pathname === "/products" && " border-sky-600 border-b-2"}`}>
+                            <Link href={"/products"}>Products</Link>
+                        </li>
                         <li>About</li>
                         <li>Contact Us</li>
-                        <li>Home</li>
                     </ul>
                 </div>
 
