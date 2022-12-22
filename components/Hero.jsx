@@ -5,8 +5,8 @@ const Hero = () => {
         <div className='py-20 px-5 xl:px-0 bg-sky-50'>
             <div className='flex   justify-center md:justify-between gap-20  flex-col lg:flex-row items-center max-w-7xl mx-auto'>
                 <div className='flex-1 text-center md:text-left'>
-                    <h1 className=' text-7xl font-extrabold  w-[460px] text-center lg:text-left'><strong className='text-8xl text-sky-800'>BE</strong> BETTER THAN GAP</h1>
-                    <p className=' text-center md:text-left my-6 text-gray-500'>
+                    <h1 className='text-5xl md:text-7xl font-extrabold  md:w-[460px] text-center lg:text-left'><strong className='text-7xl md:text-8xl text-sky-800'>BE</strong> BETTER THAN GAP</h1>
+                    <p className=' text-center md:text-left my-6 text-gray-500 text-sm md:text-base'>
                         Amet consectetur adipisicing elit. Eos at odit ipsa cum perspiciatis, ipsam cupiditate reprehenderit ut voluptatibus, laudantium enim repudiandae quia. Nisi iure quas perferendis officiis sapiente? Rem!
                     </p>
 
