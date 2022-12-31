@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { AiFillStar, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai'
 import { MdAddShoppingCart } from 'react-icons/md'
@@ -33,7 +34,7 @@ const CardProduct = ({ product }) => {
 
                 <div className='flex  justify-between items-center pt-3'>
                     <p>${product?.price}</p>
-                    <button onClick={() => console.log(product)}><MdAddShoppingCart size={20} className='text-gray-50 rounded-md h-7 p-1 w-7 bg-blue-500' /></button>
+                    <Link href={`/product/${product?.id}`} ><MdAddShoppingCart size={20} className='text-gray-50 rounded-md h-7 p-1 w-7 bg-blue-500' /></Link>
                 </div>
             </div>
 

@@ -11,7 +11,6 @@ import Hero from '../components/Hero'
 
 
 
-
 export async function getStaticProps() {
 
   const res = await fetch('https://fakestoreapi.com/products')
@@ -20,7 +19,7 @@ export async function getStaticProps() {
 
   return {
     props: { products }, // will be passed to the page component as props
-    revalidate: 10,
+    revalidate: 5,
   }
 }
 

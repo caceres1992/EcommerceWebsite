@@ -7,4 +7,12 @@
   .textTitle{
     @apply text-center font-medium text-2xl text-gray-700
   }
+
+  .btnLoginSocial{
+    @apply bg-white hover:bg-gray-50 transition-all ease-in-out shadow-lg p-2 rounded-full
+  }
+  .inputLogin{
+    @apply border-gray-100 border pl-8 pr-5 py-2 rounded-md w-full outline-none 
+     focus:border-blue-400 text-gray-400 focus:placeholder:text-blue-400
+  }
 }
