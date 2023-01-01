@@ -1,5 +1,6 @@
 import React from 'react'
 import OurProducts from '../components/OurProducts'
+import useCart from '../hooks/useCart'
 
 export async function getStaticProps() {
 
@@ -15,7 +16,7 @@ export async function getStaticProps() {
 
 
 const products = ({ products }) => {
-    console.log(products)
+    
     return (
         <div>
             <OurProducts products={products} />

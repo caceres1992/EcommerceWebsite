@@ -4,9 +4,12 @@ import React, { useState } from 'react'
 import { CiUser } from 'react-icons/ci'
 import { IoBagOutline } from 'react-icons/io5'
 import { AiOutlineMenuUnfold } from 'react-icons/ai'
+import useCart from '../../hooks/useCart'
+import DrawerCart from '../DrawerCart'
 const Navbar = () => {
-    const [isOpenCart, setIsOpenCart] = useState(false)
+
     const router = useRouter()
+    const { cartList } = useCart()
 
     return (
         <div className='bg-white py-5 fixed w-full z-50'>
@@ -41,13 +44,18 @@ const Navbar = () => {
 
                         </div>
                     </Link>
-                    <Link href='/mycart'>
+                    <Link href='/mycart' className='relative' >
                         <IoBagOutline className='' size={20} />
+
+                        {cartList.length > 0 && <div className='bg-rose-500 h-5 w-5 text-xs absolute -top-1.5 left-3
+                        flex justify-center items-center text-white rounded-full'>
+                            {cartList.length}
+                        </div>}
 
                     </Link>
                 </div>
             </div>
-
+            <DrawerCart />
         </div>
     )
 }

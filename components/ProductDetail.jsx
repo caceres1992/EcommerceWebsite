@@ -1,6 +1,9 @@
 import React from 'react'
 import { AiFillStar, AiOutlineMinus, AiOutlinePlus, AiOutlineHeart } from 'react-icons/ai'
+import useCart from '../hooks/useCart';
 const ProductDetail = ({ product }) => {
+
+    const { addProductToCart, quantity, incQuantity, descQuantity } = useCart();
     return (
         <div>
             <div className='flex  items-start justify-between gap-20'>
@@ -28,20 +31,23 @@ const ProductDetail = ({ product }) => {
                     <h5 className='text-gray-800 font-bold pb-1'>Description</h5>
                     <p className='text-gray-600 text-base pr-3'>   {product.description}</p>
 
-                    <p className='font-bold text-3xl text-gray-800 my-2 tracking-[2px]'> $23</p>
+                    <p className='font-bold text-3xl text-gray-800 my-2 tracking-[2px]'> ${product.price}</p>
 
                     <div className='flex items-start gap-x-2 '>
-                        <div className='border w-20 flex items-center rounded-sm'>
-                            <button className='flex-1 py-1 px-2 '>
+                        <div className='border w-fit text-center flex items-center rounded-sm'>
+                            <button onClick={() => descQuantity()}
+                                className='flex-1 py-1 px-2 '>
                                 <AiOutlineMinus />
                             </button>
-                            <span className='p-1'>1</span>
-                            <button className='flex-1 py-1 px-2'>
+                            <span className='p-1  w-8'>{quantity}</span>
+                            <button onClick={() => incQuantity()}
+                                className='flex-1 py-1 px-2' >
                                 <AiOutlinePlus />
                             </button>
                         </div>
                         <div className='flex flex-col'>
-                            <button className='bg-black py-2.5 px-10 text-white text-xs font-bold capitalize tracking-[1px]'>Add to basket </button>
+                            <button onClick={() => addProductToCart(product)}
+                                className='bg-black py-2.5 px-10 text-white text-xs font-bold capitalize tracking-[1px]'>Add to basket </button>
                             <button className='flex  items-center justify-center gap-x-1 py-1 text-sm'>    <AiOutlineHeart className='   text-gray-900 ' size={16} />Add To Wishlist</button>
                         </div>
                     </div>
