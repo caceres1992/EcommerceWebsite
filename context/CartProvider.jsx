@@ -24,6 +24,7 @@ const CartProvider = ({ children }) => {
     const addProductToCart = (product) => {
         const vaor = cartList.find(prod => prod.product.id === product.id)
         setTotalAllProducts((prevTotal => prevTotal + quantity))
+        setTotalPrice((prevTotalPrive => prevTotalPrive + (quantity * product.price)))
         if (vaor === undefined) {
             setcartList([...cartList, { product, quantity }])
             setDrawerIsOpen(true)
@@ -42,7 +43,53 @@ const CartProvider = ({ children }) => {
 
 
 
+    const ascProductQA = (item) => {
+        setcartList((prevCartlist) => {
+            const newCartList = prevCartlist.map(cartProduct => {
+                if (cartProduct.product.id === item.product.id) {
+                    return { ...item, quantity: (item.quantity + 1) }
+                } else {
+                    return cartProduct
+                }
+            })
+            return newCartList
+        })
+        setTotalAllProducts(prev => prev + 1)
+        setTotalPrice(prevTotalPrice => prevTotalPrice + item.product.price)
 
+    }
+
+    const descProductQA = (item) => {
+        if (item.quantity !== 1) {
+            setcartList((prevCartlist) => {
+                return prevCartlist.map(cartProduct => {
+                    if (cartProduct.product.id === item.product.id) {
+
+                        return { ...item, quantity: (item.quantity - 1) }
+                    } else {
+                        return cartProduct
+                    }
+                })
+            })
+
+        } else {
+            setcartList((prevCartList) => {
+                return prevCartList.filter(cartItem => cartItem.product.id !== item.product.id)
+            })
+        }
+        setTotalAllProducts(prev => prev - 1)
+        setTotalPrice(prevTotalPrice => prevTotalPrice - item.product.price)
+
+    }
+
+    const removeItem = (item) => {
+        setcartList((prevCartList) => {
+            return prevCartList.filter(cartItem => cartItem.product.id !== item.product.id)
+        })
+        setTotalAllProducts(prevTotalPructs => prevTotalPructs - item.quantity)
+        setTotalPrice(prevTotalPrice => prevTotalPrice - (item.quantity * item.product.price))
+
+    }
 
     return (
         <CartContext.Provider
@@ -51,11 +98,15 @@ const CartProvider = ({ children }) => {
                 quantity,
                 drawerIsOpen,
                 totalAllProducts,
+                totalPrice,
                 // methods
                 addProductToCart,
                 incQuantity,
                 descQuantity,
-                setDrawerIsOpen
+                setDrawerIsOpen,
+                ascProductQA,
+                descProductQA,
+                removeItem
             }}
         >
             {children}

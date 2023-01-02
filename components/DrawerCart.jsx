@@ -4,13 +4,13 @@ import CartProductDetail from './CartProductDetail'
 
 const DrawerCart = () => {
 
-    const { cartList, setDrawerIsOpen, drawerIsOpen,totalAllProducts } = useCart()
+    const { cartList, setDrawerIsOpen, drawerIsOpen, totalAllProducts,totalPrice } = useCart()
     return (
 
         <div className={`${drawerIsOpen ? 'w-96' : 'w-0'} transition-all ease-in-out overflow-hidden  bg-gray-50  h-full flex flex-col justify-between  py-3  top-0 fixed right-0`}>
             <div className='px-3 pb-3 flex justify-between border-b-2 border-gray-300'>
 
-                <p className='text-sm font-medium'> {totalAllProducts} Products - Sub total: <span className='text-xl text-blue-700 tracking-[1px]'>$340</span> </p>
+                <p className='text-sm font-medium'> {totalAllProducts} Products - Sub total: <span className='text-xl text-blue-700 tracking-[1px]'>${totalPrice}</span> </p>
                 <button className='text-gray-900 font-bold text-sm'
                     onClick={() => setDrawerIsOpen(false)}>Close X</button>
             </div>
