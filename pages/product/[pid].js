@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import CardProduct from '../../components/CardProduct'
 import ProductDetail from '../../components/ProductDetail'
+import useCart from '../../hooks/useCart'
 
 
 
@@ -23,17 +24,20 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-
+    // const { setQuantity } = useCart()
     const resProduct = await fetch(`https://fakestoreapi.com/products/${params.pid}`)
     const resProducts = await fetch(`https://fakestoreapi.com/products/`)
     const product = await resProduct.json()
     const products = await resProducts.json()
+    // setQuantity(1)
     return {
         props: { product, products },
     }
 }
 
+
 const Product = ({ product, products }) => {
+  
 
     return (
         <div className='mx-auto max-w-7xl py-20 '>

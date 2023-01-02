@@ -106,7 +106,8 @@ const CartProvider = ({ children }) => {
                 setDrawerIsOpen,
                 ascProductQA,
                 descProductQA,
-                removeItem
+                removeItem,
+                setQuantity
             }}
         >
             {children}

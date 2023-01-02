@@ -30,10 +30,10 @@ const CartProductDetail = ({ item }) => {
 
             <div className='flex flex-col  items-end justify-between '>
                 <p className='text-base font-bold tracking-[1px] text-gray-800'>
-                    $ {item.product.price * item.quantity}</p>
+                    $ {(item.product.price * item.quantity).toFixed(2)}</p>
                 <button className='text-xs text-red-500 py-2 font-medium tracking-[1px]' onClick={() => removeItem(item)}>Delete</button>
             </div>
-            
+
         </div>
     )
 }
