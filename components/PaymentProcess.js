@@ -19,7 +19,7 @@ const PaymentProcess = () => {
 
                         <ul>
                             {cartList.map(item => {
-                                return <li className='border-b py-4 border-gray-100'>
+                                return <li key={item.product.id} className='border-b py-4 border-gray-100'>
                                     <div className='flex  gap-2 justify-between items-center'>
                                         <div className='h-[120px] w-[120px] '>
                                             <img width={120} height={120}
