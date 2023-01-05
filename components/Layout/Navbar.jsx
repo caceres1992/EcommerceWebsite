@@ -13,7 +13,7 @@ const Navbar = () => {
 
     return (
         <div className='bg-white py-5 fixed w-full z-50'>
-            <div className='mx-auto max-w-7xl flex justify-between items-center px-5 lg:px-0 relative'>
+            <div className='mx-auto max-w-7xl flex justify-between items-center px-5 xl:px-0 relative'>
                 <div className='flex items-center gap-x-3'>
                     <p className='text-2xl font-extrabold tracking-[2px]'>BECOOL</p>
                     <AiOutlineMenuUnfold size={26} className='cursor-pointer lg:hidden' />
