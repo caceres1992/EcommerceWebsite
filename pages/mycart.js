@@ -1,7 +1,6 @@
 
 import React from 'react'
 import PaymentProcess from '../components/PaymentProcess'
-
 const MyCart = () => {
     return (
         <div className=' max-w-7xl mx-auto'>

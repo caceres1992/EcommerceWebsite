@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import useCart from '../hooks/useCart'
 
@@ -10,6 +10,18 @@ const PaymentProcess = () => {
         e.preventDefault();
         alert(' This button does not work')
     }
+
+    useEffect(() => {
+        // Check to see if this is a redirect back from Checkout
+        const query = new URLSearchParams(window.location.search);
+        if (query.get('success')) {
+            console.log('Order placed! You will receive an email confirmation.');
+        }
+
+        if (query.get('canceled')) {
+            console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
+        }
+    }, []);
     return (
         <div>
             {cartList.length > 0 ?
@@ -89,7 +101,11 @@ const PaymentProcess = () => {
                     </p>
                     <div className='space-x-5'>
                         <Link href={'/products'} className=' py-2.5 px-10 text-sky-600'>Back to Shop</Link>
-                        <button className='bg-sky-600 text-gray-50 py-2.5 px-10 shadow-sm rounded-xl hover:bg-sky-500'>Continue to payment</button>
+                        <form method='POST' action='/api/checkout-sessions'>
+                            <input  type={"hidden"} name="products" value={JSON.stringify(cartList)} />
+                            <button type={'submit'}
+                                className='bg-sky-600 text-gray-50 py-2.5 px-10 shadow-sm rounded-xl hover:bg-sky-500'>Continue to payment</button>
+                        </form>
                     </div>
                 </div>
             </div>
