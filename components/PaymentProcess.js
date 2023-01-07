@@ -76,7 +76,7 @@ const PaymentProcess = () => {
                     <aside className='w-96 h-fit rounded-md shadow-lg p-4'>
                         <form onSubmit={handleCodePromo}>
                             <div className='space-y-2 py-4'>
-                                <label for="promoCode" className='block text-gray-400 text-sm'>Promo code?</label>
+                                <label htmlFor="promoCode" className='block text-gray-400 text-sm'>Promo code?</label>
                                 <div className='flex border rounded-lg overflow-hidden
                                  border-gray-600'>
 
@@ -102,7 +102,7 @@ const PaymentProcess = () => {
                     <div className='space-x-5'>
                         <Link href={'/products'} className=' py-2.5 px-10 text-sky-600'>Back to Shop</Link>
                         <form method='POST' action='/api/checkout-sessions'>
-                            <input  type={"hidden"} name="products" value={JSON.stringify(cartList)} />
+                            <input type={"hidden"} name="products" value={JSON.stringify(cartList)} />
                             <button type={'submit'}
                                 className='bg-sky-600 text-gray-50 py-2.5 px-10 shadow-sm rounded-xl hover:bg-sky-500'>Continue to payment</button>
                         </form>
