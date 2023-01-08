@@ -33,16 +33,16 @@ const CartProvider = ({ children }) => {
             setDrawerIsOpen(true)
         } else {
             setcartList(prevCart => {
-                return prevCart.map(item => {
+                const newCartList = prevCart.map(item => {
                     if (item.product.id === product.id) {
-                        localStorage.setItem('items', JSON.stringify({ ...item, quantity: item.quantity + quantity }))
                         return { ...item, quantity: item.quantity + quantity }
                     }
                     else {
-                        localStorage.setItem('items', JSON.stringify(item))
                         return item
                     }
                 })
+                localStorage.setItem('items', JSON.stringify(newCartList))
+                return newCartList
             })
         }
     }
