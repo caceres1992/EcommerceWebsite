@@ -54,13 +54,14 @@ const CartProvider = ({ children }) => {
         setcartList((prevCartlist) => {
             const newCartList = prevCartlist.map(cartProduct => {
                 if (cartProduct.product.id === item.product.id) {
-                    localStorage.setItem('items', JSON.stringify({ ...item, quantity: (item.quantity + 1) }))
+                    // localStorage.setItem('items', JSON.stringify({ ...item, quantity: (item.quantity + 1) }))
                     return { ...item, quantity: (item.quantity + 1) }
                 } else {
-                    localStorage.setItem('items', JSON.stringify(cartProduct))
+                    // localStorage.setItem('items', JSON.stringify(cartProduct))
                     return cartProduct
                 }
             })
+            localStorage.setItem('items', JSON.stringify(newCartList))
             return newCartList
         })
         setTotalAllProducts(prev => prev + 1)
@@ -71,15 +72,15 @@ const CartProvider = ({ children }) => {
     const descProductQA = (item) => {
         if (item.quantity !== 1) {
             setcartList((prevCartlist) => {
-                return prevCartlist.map(cartProduct => {
+                const newCartList = prevCartlist.map(cartProduct => {
                     if (cartProduct.product.id === item.product.id) {
-                        localStorage.setItem('items', JSON.stringify({ ...item, quantity: (item.quantity - 1) }))
                         return { ...item, quantity: (item.quantity - 1) }
                     } else {
-                        localStorage.setItem('items', JSON.stringify(cartProduct))
                         return cartProduct
                     }
                 })
+                localStorage.setItem('items', JSON.stringify(newCartList))
+                return newCartList
             })
 
         } else {
