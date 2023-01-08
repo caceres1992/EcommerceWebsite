@@ -125,9 +125,9 @@ const CartProvider = ({ children }) => {
         }
     }
  
-    // useEffect(()=>{
-    //     doingMath()
-    // },[0])
+    useEffect(()=>{
+        doingMath()
+    },[0])
  
 
     return (
