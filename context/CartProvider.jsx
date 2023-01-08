@@ -111,29 +111,24 @@ const CartProvider = ({ children }) => {
         let sumQuty = 0
         let subTotalPrice = 0
 
-        for (const itemStorage of getDataFromStorage) {
-            sumQuty += itemStorage.quantity
-            subTotalPrice += (itemStorage.quantity * itemStorage.product.price)
-        }
-        setTotalAllProducts(sumQuty)
-        setTotalPrice(subTotalPrice)
-        console.log(subTotalPrice)
-        console.log(sumQuty)
-
-
-
-    }
-
-    useEffect(() => {
-        const getDataFromStorage = JSON.parse(localStorage.getItem('items'))
         if (getDataFromStorage.length > 0) {
             setcartList(getDataFromStorage)
-            doingMath()
-            console.log("tiene datos")
+
+            for (const itemStorage of getDataFromStorage) {
+                sumQuty += itemStorage.quantity
+                subTotalPrice += (itemStorage.quantity * itemStorage.product.price)
+            }
+            setTotalAllProducts(sumQuty)
+            setTotalPrice(subTotalPrice)
         } else {
-            console.log("no TIENE DATOS")
+            setcartList([])
         }
-    }, [0])
+    }
+ 
+    useEffect(()=>{
+        doingMath()
+    },[])
+ 
 
     return (
         <CartContext.Provider
