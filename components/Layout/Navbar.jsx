@@ -10,7 +10,7 @@ import DrawerCart from '../DrawerCart'
 const Navbar = () => {
 
     const router = useRouter()
-    const { cartList } = useCart()
+    const { cartList, CheckingValuesInLocalStorage } = useCart()
     const [activeMenu, setActiveMenu] = useState(false)
     const handleMenu = () => {
         setActiveMenu(!activeMenu)
@@ -19,6 +19,7 @@ const Navbar = () => {
 
 
     useEffect(() => {
+        CheckingValuesInLocalStorage()
         console.log("refrescando")
     }, [0])
 
