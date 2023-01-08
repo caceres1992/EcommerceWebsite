@@ -20,7 +20,6 @@ const Navbar = () => {
 
     useEffect(() => {
         CheckingValuesInLocalStorage()
-        console.log("refrescando")
     }, [0])
 
     return (
