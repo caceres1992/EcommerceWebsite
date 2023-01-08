@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiUser } from 'react-icons/ci'
 import { IoBagOutline } from 'react-icons/io5'
 import { AiOutlineMenuUnfold } from 'react-icons/ai'
@@ -16,12 +16,18 @@ const Navbar = () => {
         setActiveMenu(!activeMenu)
         console.log("abriendo menu")
     }
+
+
+    useEffect(() => {
+        console.log("refrescando")
+    }, [0])
+
     return (
         <div className='bg-white py-5 fixed w-full z-50'>
             <div className='mx-auto max-w-7xl flex justify-between items-center px-5 xl:px-0 relative'>
                 <div className='flex items-center gap-x-3'>
                     <Link href={'/'}>
-                    <p className='text-2xl font-extrabold tracking-[2px]'>BECOOL</p>
+                        <p className='text-2xl font-extrabold tracking-[2px]'>BECOOL</p>
                     </Link>
 
                     {activeMenu ?

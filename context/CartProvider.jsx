@@ -106,7 +106,7 @@ const CartProvider = ({ children }) => {
 
     }
 
-    const doingMath = () => {
+    const CheckingValuesInLocalStorage = () => {
         const getDataFromStorage = JSON.parse(localStorage.getItem('items'))
         let sumQuty = 0
         let subTotalPrice = 0
@@ -125,9 +125,7 @@ const CartProvider = ({ children }) => {
         }
     }
  
-    useEffect(()=>{
-        doingMath()
-    },[0])
+
  
 
     return (
@@ -146,7 +144,8 @@ const CartProvider = ({ children }) => {
                 ascProductQA,
                 descProductQA,
                 removeItem,
-                setQuantity
+                setQuantity,
+                CheckingValuesInLocalStorage
             }}
         >
             {children}
