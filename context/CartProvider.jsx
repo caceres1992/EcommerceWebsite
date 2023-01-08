@@ -110,9 +110,8 @@ const CartProvider = ({ children }) => {
         const getDataFromStorage = JSON.parse(localStorage.getItem('items'))
         let sumQuty = 0
         let subTotalPrice = 0
-        console.log("something is wrong")
-        if (getDataFromStorage.length > 0) {
-            console.log(getDataFromStorage)
+        if (getDataFromStorage) {
+            console.log('si data')
             // setcartList(getDataFromStorage)
 
             // for (const itemStorage of getDataFromStorage) {
@@ -122,6 +121,8 @@ const CartProvider = ({ children }) => {
             // setTotalAllProducts(sumQuty)
             // setTotalPrice(subTotalPrice)
 
+        }else{
+            console.log('no data')
         }
     }
 
