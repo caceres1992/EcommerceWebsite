@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-      <div>Footer</div>
+      <div className='p-8 text-center font-bold'>Jasson Caceres 2023 </div>
   )
 }
 

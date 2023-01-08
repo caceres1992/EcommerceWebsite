@@ -1,25 +1,24 @@
 import React from 'react'
 import OurProducts from '../components/OurProducts'
-import useCart from '../hooks/useCart'
 
 export async function getStaticProps() {
-
+    const restCategories = await fetch('https://fakestoreapi.com/products/categories')
     const res = await fetch('https://fakestoreapi.com/products')
     const products = await res.json()
-
+    const categories = await restCategories.json()
 
     return {
-        props: { products }, // will be passed to the page component as props
+        props: { products,categories }, // will be passed to the page component as props
         revalidate: 3,
     }
 }
 
 
-const products = ({ products }) => {
-    
+const products = ({ products, categories }) => {
+    console.log(categories)
     return (
-        <div>
-            <OurProducts products={products} />
+        <div className='bg-gray-50'>
+            <OurProducts products={products} categories={categories} />
         </div>
     )
 }

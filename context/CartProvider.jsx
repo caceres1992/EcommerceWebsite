@@ -2,6 +2,8 @@ import React, { createContext, useEffect, useState } from 'react'
 
 const CartContext = createContext();
 
+
+
 const CartProvider = ({ children }) => {
     const [cartList, setcartList] = useState([])
     const [quantity, setQuantity] = useState(1)
@@ -27,14 +29,19 @@ const CartProvider = ({ children }) => {
         setTotalPrice((prevTotalPrive => prevTotalPrive + (quantity * product.price)))
         if (vaor === undefined) {
             setcartList([...cartList, { product, quantity }])
+            localStorage.setItem('items', JSON.stringify([...cartList, { product, quantity }]))
             setDrawerIsOpen(true)
         } else {
             setcartList(prevCart => {
                 return prevCart.map(item => {
-                    if (item.product.id === product.id)
+                    if (item.product.id === product.id) {
+                        localStorage.setItem('items', JSON.stringify({ ...item, quantity: item.quantity + quantity }))
                         return { ...item, quantity: item.quantity + quantity }
-                    else
+                    }
+                    else {
+                        localStorage.setItem('items', JSON.stringify(item))
                         return item
+                    }
                 })
             })
         }
@@ -47,8 +54,10 @@ const CartProvider = ({ children }) => {
         setcartList((prevCartlist) => {
             const newCartList = prevCartlist.map(cartProduct => {
                 if (cartProduct.product.id === item.product.id) {
+                    localStorage.setItem('items', JSON.stringify({ ...item, quantity: (item.quantity + 1) }))
                     return { ...item, quantity: (item.quantity + 1) }
                 } else {
+                    localStorage.setItem('items', JSON.stringify(cartProduct))
                     return cartProduct
                 }
             })
@@ -64,17 +73,21 @@ const CartProvider = ({ children }) => {
             setcartList((prevCartlist) => {
                 return prevCartlist.map(cartProduct => {
                     if (cartProduct.product.id === item.product.id) {
-
+                        localStorage.setItem('items', JSON.stringify({ ...item, quantity: (item.quantity - 1) }))
                         return { ...item, quantity: (item.quantity - 1) }
                     } else {
+                        localStorage.setItem('items', JSON.stringify(cartProduct))
                         return cartProduct
                     }
                 })
             })
 
         } else {
+
             setcartList((prevCartList) => {
-                return prevCartList.filter(cartItem => cartItem.product.id !== item.product.id)
+                const items = prevCartList.filter(cartItem => cartItem.product.id !== item.product.id)
+                localStorage.setItem('items', JSON.stringify(items))
+                return items
             })
         }
         setTotalAllProducts(prev => prev - 1)
@@ -84,12 +97,43 @@ const CartProvider = ({ children }) => {
 
     const removeItem = (item) => {
         setcartList((prevCartList) => {
-            return prevCartList.filter(cartItem => cartItem.product.id !== item.product.id)
+            const filteredItems = prevCartList.filter(cartItem => cartItem.product.id !== item.product.id)
+            localStorage.setItem('items', JSON.stringify(filteredItems))
+            return filteredItems
         })
         setTotalAllProducts(prevTotalPructs => prevTotalPructs - item.quantity)
         setTotalPrice(prevTotalPrice => prevTotalPrice - (item.quantity * item.product.price))
 
     }
+
+    const doingMath = () => {
+        const getDataFromStorage = JSON.parse(localStorage.getItem('items'))
+        let sumQuty = 0
+        let subTotalPrice = 0
+
+        for (const itemStorage of getDataFromStorage) {
+            sumQuty += itemStorage.quantity
+            subTotalPrice += (itemStorage.quantity * itemStorage.product.price)
+        }
+        setTotalAllProducts(sumQuty)
+        setTotalPrice(subTotalPrice)
+        console.log(subTotalPrice)
+        console.log(sumQuty)
+
+
+
+    }
+
+    useEffect(() => {
+        const getDataFromStorage = JSON.parse(localStorage.getItem('items'))
+        if (getDataFromStorage.length > 0) {
+            setcartList(getDataFromStorage)
+            doingMath()
+            console.log("tiene datos")
+        } else {
+            console.log("no TIENE DATOS")
+        }
+    }, [0])
 
     return (
         <CartContext.Provider
