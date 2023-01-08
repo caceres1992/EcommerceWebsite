@@ -112,16 +112,17 @@ const CartProvider = ({ children }) => {
         let subTotalPrice = 0
         console.log("something is wrong")
         if (getDataFromStorage.length > 0) {
-            setcartList(getDataFromStorage)
+            console.log(getDataFromStorage)
+            // setcartList(getDataFromStorage)
 
-            for (const itemStorage of getDataFromStorage) {
-                sumQuty += itemStorage.quantity
-                subTotalPrice += (itemStorage.quantity * itemStorage.product.price)
-            }
-            setTotalAllProducts(sumQuty)
-            setTotalPrice(subTotalPrice)
+            // for (const itemStorage of getDataFromStorage) {
+            //     sumQuty += itemStorage.quantity
+            //     subTotalPrice += (itemStorage.quantity * itemStorage.product.price)
+            // }
+            // setTotalAllProducts(sumQuty)
+            // setTotalPrice(subTotalPrice)
 
-            }
+        }
     }
 
 
