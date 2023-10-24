@@ -19,17 +19,16 @@ export default async function handler(req, res) {
                     },
                 })
             }
-
-
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 line_items: line_items,
                 mode: 'payment',
-
-                success_url: `${req.headers.origin}/?success=true`,
+                success_url: `${req.headers.origin}/successpayment?success=true`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
-            });
+            })
+            
             res.redirect(303, session.url);
+            console.log(session)
         } catch (err) {
             res.status(err.statusCode || 500).json(err.message);
         }

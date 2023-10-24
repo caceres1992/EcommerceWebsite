@@ -2,8 +2,6 @@ import React, { createContext, useEffect, useState } from 'react'
 
 const CartContext = createContext();
 
-
-
 const CartProvider = ({ children }) => {
     const [cartList, setcartList] = useState([])
     const [quantity, setQuantity] = useState(1)
@@ -20,8 +18,6 @@ const CartProvider = ({ children }) => {
         else
             setQuantity(quantity - 1)
     }
-
-
 
     const addProductToCart = (product) => {
         const vaor = cartList.find(prod => prod.product.id === product.id)
@@ -47,17 +43,12 @@ const CartProvider = ({ children }) => {
         }
     }
 
-
-
-
     const ascProductQA = (item) => {
         setcartList((prevCartlist) => {
             const newCartList = prevCartlist.map(cartProduct => {
                 if (cartProduct.product.id === item.product.id) {
-                    // localStorage.setItem('items', JSON.stringify({ ...item, quantity: (item.quantity + 1) }))
                     return { ...item, quantity: (item.quantity + 1) }
                 } else {
-                    // localStorage.setItem('items', JSON.stringify(cartProduct))
                     return cartProduct
                 }
             })
@@ -66,7 +57,6 @@ const CartProvider = ({ children }) => {
         })
         setTotalAllProducts(prev => prev + 1)
         setTotalPrice(prevTotalPrice => prevTotalPrice + item.product.price)
-
     }
 
     const descProductQA = (item) => {
@@ -82,9 +72,7 @@ const CartProvider = ({ children }) => {
                 localStorage.setItem('items', JSON.stringify(newCartList))
                 return newCartList
             })
-
         } else {
-
             setcartList((prevCartList) => {
                 const items = prevCartList.filter(cartItem => cartItem.product.id !== item.product.id)
                 localStorage.setItem('items', JSON.stringify(items))
@@ -93,7 +81,6 @@ const CartProvider = ({ children }) => {
         }
         setTotalAllProducts(prev => prev - 1)
         setTotalPrice(prevTotalPrice => prevTotalPrice - item.product.price)
-
     }
 
     const removeItem = (item) => {
@@ -112,9 +99,7 @@ const CartProvider = ({ children }) => {
         let sumQuty = 0
         let subTotalPrice = 0
         if (getDataFromStorage) {
-            console.log('si data')
             setcartList(getDataFromStorage)
-
             for (const itemStorage of getDataFromStorage) {
                 sumQuty += itemStorage.quantity
                 subTotalPrice += (itemStorage.quantity * itemStorage.product.price)
@@ -124,7 +109,11 @@ const CartProvider = ({ children }) => {
         }
     }
 
-
+    const removingAllProducts = () => {
+        setcartList([])
+        setTotalPrice(0)
+        localStorage.setItem('items', JSON.stringify([]))
+    }
 
     return (
         <CartContext.Provider
@@ -143,7 +132,8 @@ const CartProvider = ({ children }) => {
                 descProductQA,
                 removeItem,
                 setQuantity,
-                CheckingValuesInLocalStorage
+                CheckingValuesInLocalStorage,
+                removingAllProducts
             }}
         >
             {children}
