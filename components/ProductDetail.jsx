@@ -5,10 +5,10 @@ const ProductDetail = ({ product }) => {
 
     const { addProductToCart, quantity, incQuantity, descQuantity } = useCart();
     return (
-        <div>
-            <div className='flex  items-start justify-between gap-20'>
-                <div className='flex-1 '>
-                    <img src={product.image} className='h-[500px] mx-auto py-10 b' />
+        <div className=' pb-10'>
+            <div className='flex flex-col lg:flex-row  items-start justify-between gap-10 md:gap-20'>
+                <div className='flex-1 w-full'>
+                    <img src={product.image} className=' h-60  md:h-[500px] object-contain w-full border bg-white rounded-lg mx-auto py-10' />
                 </div>
                 <div className='flex-1'>
                     <h2 className='font-black capitalize text-3xl md:text-4xl'>

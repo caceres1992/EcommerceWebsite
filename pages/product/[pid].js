@@ -40,7 +40,7 @@ const Product = ({ product, products }) => {
   
 
     return (
-        <div className='mx-auto max-w-7xl py-20 '>
+        <div className='container max-w-7xl py-20 '>
             <ProductDetail product={product} />
             <h2 className='text-xl font-bold'>Recommended for you!</h2>
             <div className=' grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full my-10'>
