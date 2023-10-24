@@ -11,8 +11,7 @@ const CardProduct = ({ product }) => {
     return (
         <div className='   rounded-lg overflow-hidden  relative'>
             <AiOutlineHeart className=' absolute left-5 top-5 text-gray-900 z-10' size={20} />
-            <div className=' h-44  w-full md:h-64 p-3'>
-
+            <div className=' h-44  w-full md:h-64 overflow-hidden'>
                 <img
                     onClick={() => console.log(product)}
                     className=' h-full w-full hover:scale-110 transition-all ease-in-out bg-white  object-contain p-4 object-center'
@@ -38,7 +37,7 @@ const CardProduct = ({ product }) => {
 
                 <div className='flex  justify-between items-center pt-3'>
                     <p>${product?.price}</p>
-                    <Link href={`/product/${product?.id}`} onClick={() => setQuantity(1)} ><MdAddShoppingCart size={20} className='text-gray-50 rounded-md h-7 p-1 w-7 bg-blue-500' /></Link>
+                    <Link href={`/product/${product?.id}`} onClick={() => setQuantity(1)} ><MdAddShoppingCart size={20} className='text-gray-50 rounded-md h-7 p-1 w-7 bg-amber-700' /></Link>
                 </div>
             </div>
 

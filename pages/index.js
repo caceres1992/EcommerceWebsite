@@ -35,7 +35,6 @@ export default function Home({ products }) {
       <main className='bg-gray-50'>
         <Hero />
         <NewWinterCollection products={products} />
-        <DealOfTheDay />
 
       </main>
     </>

@@ -23,8 +23,8 @@ const Navbar = () => {
     }, [0])
 
     return (
-        <div className='bg-white py-5 fixed w-full z-50'>
-            <div className='mx-auto max-w-7xl flex justify-between items-center px-5 xl:px-0 relative'>
+        <div className='bg-white py-5  sticky top-0 w-full z-50'>
+            <div className='mx-auto  flex justify-between items-center px-5 xl:px-20 relative'>
                 <div className='flex items-center gap-x-3'>
                     <Link href={'/'}>
                         <p className='text-2xl font-extrabold tracking-[2px]'>BECOOL</p>
